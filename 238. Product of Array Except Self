@@ -1,0 +1,49 @@
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int[] answer = new int[nums.length];
+        // for(int i=0;i<nums.length;i++)
+        // {
+        //     int pro = 1;
+        //     for(int j=0;j<nums.length;j++)
+        //     {
+                 
+        //         if(i!=j)
+        //         {
+        //             pro=pro*nums[j];
+        //             if(nums[j]==0)
+        //             break;
+        //         }
+                
+        //     }
+        //     answer[i]=pro;
+        //     if(nums[i]==0)
+        //     break;
+        // }
+        int pro=1;
+        for(int i=0;i<nums.length;i++)
+        { 
+
+            pro*=nums[i];
+            if(nums[i]==0)
+            break;
+        }
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]==0)
+            {
+                int dumy=1;
+                for(int j=0;j<nums.length;j++)
+                {
+                    if(i!=j)
+                    {
+                        dumy=dumy*nums[j];
+                    }
+                }
+                answer[i]=dumy;
+            }
+            else
+            answer[i]=pro/nums[i];
+        }
+        return answer;
+    }
+}
