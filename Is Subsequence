@@ -1,0 +1,13 @@
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int val=-1;
+        for(int i=0;i<s.length();i++)
+        {
+            if (t.substring(val + 1, t.length()).contains(String.valueOf(s.charAt(i))))
+            val = t.substring(val+1,t.length()).indexOf(s.charAt(i))+val+1;
+            else
+            return false;           
+        }
+        return true;
+    }
+}
