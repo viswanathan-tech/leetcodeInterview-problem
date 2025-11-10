@@ -1,0 +1,31 @@
+class Solution {
+    public int candy(int[] ratings) {
+        int len = ratings.length;
+        if (len == 0) return 0;
+        int[] cho = new int[len];
+
+        for (int i = 0; i < len; i++) {
+            cho[i] = 1;
+        }
+
+        for (int i = 1; i < len; i++) {
+            if (ratings[i] > ratings[i - 1]) {
+                cho[i] = cho[i - 1] + 1;
+            }
+        }
+
+        for (int i = len - 2; i >= 0; i--) {
+            if (ratings[i] > ratings[i + 1]) {
+                cho[i] = Math.max(cho[i], cho[i + 1] + 1);
+            }
+        }
+
+        // Step 4: Sum up candies
+        int result = 0;
+        for (int i = 0; i < len; i++) {
+            result += cho[i];
+        }
+
+        return result;
+    }
+}
