@@ -1,0 +1,67 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        return reverse(head,left,right);
+    }
+    public static ListNode reverse(ListNode head, int left, int right)
+    {
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode next = null;
+        int i = 1;
+        while(curr!=null)
+        {
+            if(i==left)
+            break;
+            prev=curr;
+            curr = curr.next;
+
+            System.out.println(prev.val +" "+ curr.val);
+            i++;
+        }
+        i--;
+        
+        ListNode prev1 = null;
+        ListNode curr1 = curr;
+        while(curr1!=null)
+        {
+            
+
+            if(i==right)
+            break;
+            next = curr1.next;
+            curr1.next = prev1;
+            prev1 = curr1;
+            curr1 = next;
+            i++;
+            
+        }
+        if(prev!=null)
+        prev.next = prev1;
+        curr.next = curr1;
+        return head;
+        
+
+        
+        // if(curr!=null)
+        // System.out.println("currVal" + curr.val);
+        // if(curr1!=null)
+        // System.out.println("curr1Val" + curr1.val);
+        // if(prev!=null)
+        // System.out.println("prevVal" + prev.val);
+        // if(prev1!=null)
+        // System.out.println("prev1Val" + prev1.val);
+        // if(prev!=null)
+        // prev.next = curr1;
+        // return head;
+    }
+}
